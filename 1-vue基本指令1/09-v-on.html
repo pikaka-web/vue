@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="wrap">
+    <p>{{num}}</p>
+
+    <button @click.once="add">只触发一次</button>
+    <br>
+    <button @click.left="add">只有左键触发</button>
+    <br>
+    <button @click.right="add">只有右键触发</button>
+    <br>
+    <button @click.middle="add">只有中键触发</button>按滑轮触发hhh
+    <br>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el : "#wrap",
+        data : {
+            num : 0,
+        },
+        methods : {
+            add(){
+                this.num ++;
+            }
+        }
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

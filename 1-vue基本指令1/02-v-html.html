@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="wrap">
+			<h1>{{msg}}</h1>
+			<p v-html="abc"></p>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el: "#wrap",
+
+				data: {
+					//这里的属性名，不是固定写，是我们自己定义的
+					msg: "Hello Vue!",
+					abc: "<em>这是一个斜体标签</em>"
+				}
+			});
+		</script>
+
+
+	</body>
+</html>

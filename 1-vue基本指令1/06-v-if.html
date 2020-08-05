@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="wrap">
+
+    <a href="" v-if="bool">111111</a>
+    <a href="" v-else-if="name==='皮卡卡'">22222</a>
+    <a href="" v-else-if="bool2">3333</a>
+    <a href="" v-else>44444</a>
+
+
+    <p>{{name}}</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el : "#wrap",
+        data : {
+            bool : false,
+            bool2 : true,
+            name : "皮卡卡"
+        }
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

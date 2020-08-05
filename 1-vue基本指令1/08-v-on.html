@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="wrap">
+    <input type="text" @keydown.13="add" value="按回车触发">增加
+    <br>
+    <input type="text" @keydown.enter.space="reduce" value="按空格触发">减少
+
+    <p>计数: {{num}}</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el : "#wrap",
+        data : {
+            num : 0,
+        },
+        methods : {
+            add(){
+                this.num ++;
+            },
+			reduce(){
+			    this.num --;
+			}
+	
+        }
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

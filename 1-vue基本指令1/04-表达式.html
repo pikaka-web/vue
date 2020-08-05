@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="wrap">
+			<p>{{name + "，" + age}}</p>
+			<p>{{bool?name:age}}</p>
+			<p v-text="name+'，'+age"></p>
+			<p v-text=`${name}abc${age}`></p>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script type="text/javascript">
+			new Vue({
+				el: "#wrap",
+ 
+				data: {     
+					name: "mint",    
+					age: 19,
+					bool: true
+			});
+		</script>
+	</body>
+</html>

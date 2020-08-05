@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="wrap">
+    <p>{{num}}</p>
+	
+	<!-- 这样嵌套的写法会触发事件冒泡 -->
+    <div @click="add">
+        <button @click="add">点击会触发两次</button>
+    </div>
+
+    <div @click="add">
+        <button @click.stop="add">阻止冒泡</button>
+    </div>
+	<!-- .prevent阻止默认事件 -->
+    <button @click.right.prevent="add">右键触发，并且阻止默认事件</button>
+
+    <br>
+
+    <a href="http://www.baidu.com" @click.prevent="add">a标签</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el : "#wrap",
+        data : {
+            num : 0,
+        },
+        methods : {
+            add(){
+                this.num ++;
+            }
+        }
+    });
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
