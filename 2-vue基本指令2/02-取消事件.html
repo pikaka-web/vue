@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <h4>{{num}}</h4>
+    <button @click="goudan&&clickEvent()">按钮</button>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            num : 0,
+            goudan : true
+        },
+        methods: {
+            clickEvent(){
+                this.num ++;
+                //num>=10时不然数字继续加下去
+                if (this.num >= 10){
+                    this.goudan = false;
+                }
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

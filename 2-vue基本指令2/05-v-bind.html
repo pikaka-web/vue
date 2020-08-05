@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>v-bind 对象{}的写法</title>
+</head>
+<body>
+<style>
+    .red {
+        color: red
+    }
+</style>
+<div id="app">
+    <!--这里的'red'是一个属性，可以理解为一个变量名，一个class的值
+    不会读取data里面的数据，ifRed才是，
+    ifRed的真于假决定着class也没有这个red的着名字
+    -->
+    <p
+            :class="{
+            'red' : ifRed,
+            'goudan' : name === 'pikaka'
+        }"
+    >
+        {{msg}}
+    </p>
+
+    <button @click="fn">改变ifRed</button>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+	new Vue({
+		el: "#app",
+		data: {
+			msg: "Hello Vue!",
+			ifRed: true,
+			name: "pikaka"
+		},
+		methods: {
+			fn() {
+				this.ifRed = !this.ifRed;
+			}
+		}
+	});
+
+</script>
+</body>
+</html>

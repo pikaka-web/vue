@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    .red{color:red}
+    .green{color:green}
+</style>
+<div id="app">
+
+    <p :class="cname" @click="a">{{msg}}</p>
+    <br>
+    点击上方文字变绿哦~
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            msg : "Hello Vue!"
+            ,cname : "red"
+        },
+        methods:{
+            a(){
+                this.cname = "green";
+            }
+        }
+    });
+
+</script>
+</body>
+</html>

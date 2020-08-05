@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+
+{{}}
+v-text
+v-html
+
+v-show
+
+v-if
+v-else-if
+v-else-if
+v-else
+
+v-on  @
+修饰符
+prevebt 阻止默认事件
+-->
+<div id="app">
+    <span>{{ msg }} 1</span>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    new Vue({
+        el : "#app",
+        data(){
+            return {
+                msg : "Hello World!"
+            }
+        }
+    });
+
+</script>
+</body>
+</html>
