@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<p>{{a}}</p>
+    <button @click="add">+</button>
+    <button @click="reduce">-</button>
+    <br>
+    <input type="text" v-model="msg">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+	new Vue({
+		el: '#app',
+		data:{
+			a: 10,
+            msg: ""
+		},
+		methods: {
+			add() {
+				this.a++
+            },
+            reduce() {
+				this.a--
+            }
+        },
+        //监听数据的变化，属性得在data里面定义过
+        watch:{
+			a(newVal,oldVal) {
+				console.log(newVal, oldVal);
+			}
+        }
+	});
+
+</script>
+</body>
+</html>

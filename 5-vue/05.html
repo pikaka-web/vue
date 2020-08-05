@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/05.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <table border="1">
+        <tr class="title">
+            <td>商品</td>
+            <td>单价</td>
+            <td>数量</td>
+            <td>小计</td>
+        </tr>
+        <tr v-for="(item,index) in arr">
+            <td><img :src="item.src" alt=""></td>
+            <td class="danjia">{{item.price}}</td>
+            <td class="number"><span class="down" @click="reduce(index)">-</span><span class="num">{{item.num}}</span><span class="add" @click="add(index)">+</span></td>
+            <td class="price">{{item.num * item.price}}</td>
+        </tr>
+    </table>
+
+    <div class="box">
+        <p class="totalPrice">合计费用： <span>{{totalPrice}}</span> ￥</p>
+        <p class="totalNum">已选中商品： <span>{{totalNum}}</span> 个</p>
+    </div>
+</div>
+<script>
+	new Vue({
+		el: "#app",
+
+		data: {
+			arr : [
+				{src:"img/shop1.jpg",price:8,num:0},
+				{src:"img/shop2.jpg",price:10,num:0},
+				{src:"img/shop3.jpg",price:12.5,num:0},
+				{src:"img/shop4.jpg",price:23,num:0}
+			]
+		},
+
+		methods:{
+			add(index){
+				this.arr[index].num ++;
+			},
+			reduce(index){
+				if(this.arr[index].num<=0)return;
+				this.arr[index].num --;
+			}
+		},
+
+		computed:{
+			totalNum(){
+				let n = 0;
+				this.arr.forEach(item=>{
+					n += item.num;
+				});
+				return n;
+			},
+			totalPrice(){
+				let n = 0;
+				this.arr.forEach(item=>{
+					n += item.num*item.price;
+				});
+				return n;
+			}
+		}
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    {{showPrice}}
+    <button @click="fn">按钮</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+	new Vue({
+		el: '#app',
+		data: {
+			price: 1000
+		},
+		methods: {
+			fn() {
+				this.showPrice++;
+			}
+		},
+		computed: {
+			//不能在computed里面定义data中存在的变量
+			//peice(){return 2000}
+			showPrice: {
+				//读取监听
+				get() {
+					return this.price;
+				},
+				//赋值监听
+				set(val) {
+					this.price++;
+					if (this.price >= 1010) {
+						this.price = 1000
+					}
+				}
+			}
+		}
+	});
+
+</script>
+</body>
+</html>
