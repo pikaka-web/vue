@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p v-red="msg"></p>
+    <p v-red="msg2"></p>
+    <p v-red="msg3"></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+	/*自定义指令*/
+	Vue.directive("red", (node, bind) => {
+		node.innerText = bind.value;
+		node.style.color = "red";
+		node.onclick = function () {
+			alert("111");
+		};
+	});
+
+
+	new Vue({
+		el: "#app",
+		data() {
+			return {
+				msg: "Hello",
+				msg2: "Vue",
+                msg3: "Pikaka"
+			}
+		}
+	});
+</script>
+</body>
+</html>

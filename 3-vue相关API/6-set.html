@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+
+    <ul>
+        <li v-for="item in info">
+            <b>{{item.name}}</b>
+            <em>{{item.age}}</em>
+            <em>{{item.sex}}</em>
+        </li>
+    </ul>
+
+  <button @click="fn">按钮</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+let app = new Vue({
+  el: "#app",
+  data(){
+    return {
+        info: [
+            {name: "mint",age: 20,sex: "男"},
+	        {name: "weige",age: 20,sex: "女"},
+	        {name: "zhiyuan",age: 19,sex: "男"},
+	        {name: "xiaoxi",age: 21,sex: "女"}
+        ]
+    }
+  },
+  methods: {
+      fn() {
+         this.info[0].name = "薄荷er";
+         this.info[0].age = 3;
+         this.info[0].sex = "女";
+
+         this.info[1].age = 18;
+
+
+
+      }
+  }
+
+
+});
+</script>
+</body>
+</html>

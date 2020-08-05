@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <a-mint></a-mint>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+	//全局组件
+	Vue.component(
+		//组件的名字，在html中，就使用这个标签来渲染内容
+		//如果标签中有 - 驼峰命名法
+		"aMint",
+
+		//一些选项参数
+		{
+			//对应生成的DOM结构
+			/*
+            结构中只能有一个根标签
+            * */
+			template: `<div>
+                            <p>{{num}}</p>
+                            <button @click="add">按钮</button>
+                        </div>`,
+
+			//这里定义组件的数据
+			data() {
+				return {
+					num: 0
+				}
+			},
+			methods: {
+				add() {
+					this.num++;
+				}
+			}
+
+		}
+	);
+
+	//根组件 ROOT
+	new Vue({
+		el: '#app',
+		data: {
+			msg: "Hello Vue!"
+		},
+
+	});
+
+</script>
+</body>
+</html>

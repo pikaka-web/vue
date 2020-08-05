@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <p v-for="item in arr":key="item">{{item}}</p>
+  <button @click="fn">点击切换</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+
+	let app = new Vue({
+  el: "#app",
+  data(){
+    return {
+      arr: ["小明","小红","小白"]
+    }
+  },
+  methods: {
+      fn() {
+        /*数组里面的每一项单独改变的时候，是不会触发DOM变化的*/
+        //this.arr[0] = "大明"
+
+        //使用全局set可以解决
+        Vue.set(this.arr,0,"大明");
+        this.$set(this.arr,1,"幼儿园扛把子");
+      }
+  }
+
+
+});
+</script>
+</body>
+</html>

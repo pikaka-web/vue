@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <p v-for="item in arr":key="item">{{item}}</p>
+  <button @click="fn">按钮</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+let app = new Vue({
+  el: "#app",
+  data(){
+    return {
+      arr: ["小明","小红","小白"]
+    }
+  },
+  methods: {
+      fn() {
+          //会触发DOM更新的情况
+
+          //this.arr.sort(()=>-1)
+          //this.arr.push("mint"); //pop shift unshift
+          //this.arr = ["1","2","3"];
+          this.arr = [...this.arr,"好嗨哦"];
+
+
+      }
+  }
+
+
+});
+</script>
+</body>
+</html>

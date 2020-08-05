@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <ul>
+        <li v-for="item in info">
+            <b>{{item.name}}</b>
+            <em>{{item.age}}</em>
+            <em>{{item.sex}}</em>
+            <span v-for="val in item.friends">{{val}}</span>
+        </li>
+    </ul>
+
+  <button @click="fn">按钮</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+let app = new Vue({
+  el: "#app",
+  data(){
+    return {
+        info: [
+            {name: "mint",age: 20,sex: "男",friends:["薄荷er，皮卡，","伟哥"]},
+	        {name: "伟哥",age: 20,sex: "女",friends:["神秘人x，"]},
+	        {name: "志远",age: 19,sex: "男",friends: ["小哲"]},
+	        {name: "孙希",age: 21,sex: "女",friends: ["mint"]}
+        ]
+    }
+  },
+  methods: {
+      fn() {
+      	//不行
+        //this.info[1].friends[1] = "薄荷er";
+
+        //可以
+        //this.info[1].friends.push("薄荷er");
+        this.$set(this.info[1].friends,1,"bohe");
+
+
+
+
+
+
+      }
+  }
+
+
+});
+</script>
+</body>
+</html>

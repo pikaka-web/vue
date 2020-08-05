@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <p v-for="value,key in info":key="value">{{value}}</p>
+  <button @click="fn">按钮</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+let app = new Vue({
+  el: "#app",
+  data(){
+    return {
+        info: {
+        	name: "mint",
+            age: 20,
+            sex: "男"
+        }
+    }
+  },
+  methods: {
+      fn() {
+         this.info.name = "薄荷er";
+
+
+      }
+  }
+
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <p>{{msg}}</p>
+  <button @click="change">按钮1</button>
+  <button @click="change2">按钮2</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+  new Vue({
+    el: "#app",
+    data() {
+      return {
+        msg : "Hello Vue!"
+      }
+    },
+    methods: {
+      change() {
+        //如果我们需要在DOM更新之后做一些后续处理的话,写前写后，都不会影响执行顺序
+        //在未完全掌握箭头函数的情况下，这里尽量不要用箭头函数，this指向不一定指向这里
+        //Vue.nextTick()
+        this.$nextTick(function(){
+          console.log('DOM更新了！');
+        });
+        this.msg = "Hello World!";
+      },
+      change2() {
+        this.msg = "Hello1";
+      }
+    }
+  });
+</script>
+</body>
+</html>

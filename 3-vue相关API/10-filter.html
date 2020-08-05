@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p v-for="item in teacher" :key="item.name">
+        <b>
+            {{item | fn}}
+        </b>
+    </p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+	new Vue({
+		el: "#app",
+		data() {
+			return {
+				teacher: [
+					{name: "简老师", sex: "男"},
+					{name: "罗老师", sex: "男"},
+					{name: "毛老师", sex: "女"},
+				]
+			}
+		},
+		filters: {
+			fn(value) {
+				let str = (value.sex === "男") ? "帅气的" : "漂亮的";
+				return str + value.name + "老师";
+			},
+		}
+	});
+</script>
+</body>
+</html>
