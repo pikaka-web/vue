@@ -1,0 +1,2 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0b9d35"],{3530:function(n,e,a){"use strict";a.r(e);var t=function(){var n=this,e=n.$createElement,a=n._self._c||e;return a("h1",[n._v("This is an Admin Page")])},c=[],i={name:"Admin"},s=i,u=a("2877"),r=Object(u["a"])(s,t,c,!1,null,"5a8594c4",null);e["default"]=r.exports}}]);
+//# sourceMappingURL=chunk-2d0b9d35.41a24a6d.js.map
