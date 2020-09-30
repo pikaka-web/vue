@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <g-nav></g-nav>
+
+    <aaa></aaa>
+
+    <bbb></bbb>
+</div>
+
+<template id="g">
+    <div>
+        <p>{{msg}}</p>
+        <ul>
+            <li v-for="item in arr">{{item}}</li>
+        </ul>
+    </div>
+</template>
+
+<template id="a">
+    <div>{{msg}}</div>
+</template>
+
+<template id="b">
+    <div>bbb组件</div>
+</template>
+
+<script>
+
+    let aaaChild = {
+        // template
+        // data
+    };
+
+
+    let aaaOptions = {
+        template : "#a",
+        data(){
+            return {
+                msg : "这是aaa组件"
+            }
+        },
+        components:{
+            aaaChild : aaaChild
+        }
+    };
+
+
+    Vue.component("gNav",{
+        template : `#g`,
+        data(){
+            return {
+                msg : "这是g-nav组件",
+                arr : ["苹果","香蕉","梨子"]
+            }
+        }
+    });
+
+    new Vue({
+        el : "#app",
+        data:{},
+        components:{
+            aaa : aaaOptions,
+            bbb : {
+                template : `#b`
+            }
+        }
+    });
+</script>
+</body>
+</html>

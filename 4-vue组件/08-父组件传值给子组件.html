@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <aaa :pika="arr" :abc="abc" ></aaa>
+</div>
+
+<template id="aaa">
+    <div>
+        <h2>{{m}}</h2>
+        <h3>{{abc}}</h3>
+        <ul>
+            <li v-for="item in pika">{{item}}</li>
+        </ul>
+    </div>
+</template>
+
+<script>
+	let app = new Vue({
+		el: "#app",
+		data() {
+			return {
+				arr: ["苹果", "梨子", "香蕉"],
+				msg: "我想传递给子组件",
+				abc: "嘻嘻嘻嘻"
+			}
+		},
+		components: {
+			aaa: {
+				template: "#aaa"
+				, data() {
+					return {}
+				}
+				, props: {
+					pika: Array,
+					m: {
+						type: String,
+						default: "这是默认值"
+					},
+					abc: {
+						type: String,
+						required: true
+					}
+				}
+			}
+		}
+	});
+</script>
+</body>
+</html>
+
+
+
+

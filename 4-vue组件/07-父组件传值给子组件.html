@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <aaa :pika="arr" :m="msg"></aaa>
+</div>
+<template id="aaa">
+    <div>
+        <h2>{{m}}</h2>
+        <ul>
+            <li v-for="item in pika">{{item}}</li>
+        </ul>
+    </div>
+</template>
+
+<script type="text/javascript">
+
+	/*
+    报错，子组件不能调用父组件
+
+    let aaa = {
+        template: "#aaa",
+        data() {
+            return {}
+        }
+    }; */
+
+	/*
+     第一个过程：父级传值
+     第二个过程：子级接受
+     */
+
+
+	new Vue({
+		el: "#app",
+		data() {
+			return {
+				arr: ["苹果", "香蕉", "梨子"],
+				msg: "我想传递给子组件"
+			}
+		},
+		components: {
+			aaa: {
+				template: "#aaa",
+				data() {
+					return {}
+				},
+				//props接受值
+				props: ["pika", "m"],
+				//接受成功返回到了data
+			}
+
+		}
+	});
+</script>
+
+
+</body>
+</html>

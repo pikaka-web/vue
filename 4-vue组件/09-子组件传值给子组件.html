@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <aaa @pika="parentFn"></aaa>
+    <h2>{{msg}}</h2>
+</div>
+
+<template id="aaa">
+    <div>
+        <!--<h2>{{msg}}</h2>-->
+        <button @click="childFn">按钮</button>
+        <button @click="fn">改变子msg</button>
+    </div>
+</template>
+
+<script>
+    new Vue({
+        el : "#app",
+        data:{
+            msg : "这是父组件msg的值",
+
+        },
+        components:{
+            aaa : {
+                template : "#aaa",
+                data(){
+                    return {
+                        msg : "这是子组件msg的值"
+                    }
+                },
+                methods:{
+                    childFn(){
+                        /*触发一个自定义事件*/
+						/* $emit事件发射 子级需要事件发射给父级   还有钩子函数的...*/
+                        this.$emit("pika",this.msg);
+                    },
+                    fn(){
+                        this.msg = "哈哈哈哈我变了！";
+                    }
+                }
+            }
+        },
+        methods:{
+            parentFn(v){
+                console.log(v);// v就是子级发送的第二个参数
+                this.msg = v;
+            }
+        }
+    });
+</script>
+</body>
+</html>

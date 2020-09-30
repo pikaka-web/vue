@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+<head-nav-s></head-nav-s>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    /*全局组件*/
+    Vue.component("HeadNavS",{
+	    template : `<div>
+            <p>{{msg}}</p>
+            <button @click="fn">按钮</button>
+        </div>`,
+		/*
+		这里的全局组件有点像和根组件差不多，除了那个el 但是这里组件data是一个函数，否则会报错
+		需要这样书写data(){return{}} 直接对象写法不可以
+		*/
+	    data(){
+		    return {
+			    msg : "今天天气真好！"
+		    }
+	    },
+	    methods:{
+		    fn(){
+			    this.msg = "Hello Vue!";
+		    }
+	    }
+    });
+
+    new Vue({
+	    el : "#app",
+	    data(){
+		    return {
+
+		    }
+	    }
+    });
+
+
+
+</script>
+</body>
+</html>

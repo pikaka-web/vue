@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <pika></pika>
+
+    <aaa></aaa>
+    <bbb></bbb>
+    <ccc></ccc>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+	/*全局组件 是可以被任意组件调用的*/
+	Vue.component("pika", {
+		template: `
+            <div>
+                <p>{{msg}}</p>
+				<aaa></aaa>
+				<bbb></bbb>
+				<ccc></ccc>
+            </div>`,
+		components: {
+			aaa: {
+				template: "<div>我是aaa组件</div>"
+			},
+			bbb: {
+				template: "<div>我是bbb组件</div>"
+			},
+			ccc: {
+				template: "<div>我是ccc组件</div>"
+			},
+		},
+		data() {
+			return {
+				msg: "感觉人生已经到达了高潮"
+			}
+		}
+	});
+
+
+	/*根组件*/
+	new Vue({
+		el: '#app',
+		data() {
+			return {
+				msg: 'Hello Vue!'
+			}
+		},
+		//定义子组件
+		components: {
+			//属性就是组件名
+			aaa: {
+				template: `<div>
+						       {{msg}}
+						       <fff></fff>
+						   </div>`,
+				data() {
+					return {
+						msg: "我是aaa组件"
+					}
+				},
+				components: {
+					fff: {
+						template: `<div>
+						             我是fff组件
+						             <pika></pika>
+						           </div>`
+					}
+				}
+			},
+			bbb: {
+				template: `<div>我是bbb组件</div>`
+			},
+			ccc: {
+				template: "<div>我是ccc组件</div>"
+			}
+		}
+	});
+</script>
+</body>
+</html>

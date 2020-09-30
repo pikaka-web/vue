@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <aaa @pika="parentFn"></aaa>
+    <h2>{{msg.name}}，{{msg.age}}</h2>
+</div>
+
+<template id="aaa">
+    <div>
+        <!--<h2>{{msg}}</h2>-->
+        <button @click="childFn">按钮</button>
+        <button @click="fn">改变子msg</button>
+    </div>
+</template>
+
+<script>
+    new Vue({
+        el : "#app",
+        data:{
+            msg : {
+                name : "父级名",
+                age : 20
+            }
+        },
+        components:{
+            aaa : {
+                template : "#aaa",
+                data(){
+                    return {
+                        msg : {
+                            name : "薄荷er",
+                            age : 18
+                        }
+                    }
+                },
+                methods:{
+                    childFn(){
+                        /*触发一个自定义事件*/
+						/* this这个msg建立了引用关系 */
+                        this.$emit("pika",this.msg);
+                    },
+                    fn(){
+                        this.msg.name = "皮卡";
+                    }
+                }
+            }
+        },
+        methods:{
+            parentFn(v){
+                // console.log(v);
+                this.msg = v;
+            }
+        }
+    });
+</script>
+</body>
+</html>

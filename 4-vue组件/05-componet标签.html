@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <component is="aaa"></component>
+    <!--  -->
+    <!--	 <aaa></aaa>-->
+    <!--    <bbb></bbb> -->
+    <!-- 通过componet标签来代替aaa bbb引入组件 -->
+<!--     <componet is="aaa"></componet> -->
+    <component :is="x"></component>  <!-- 属性值  直接值-->
+    <button @click="fn">按钮</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+	Vue.component("gNav", {
+		template: `<div>这是g-nav组件</div>`
+	});
+
+	new Vue({
+		el: "#app",
+		data: {
+			x: "gNav"
+		},
+		components: {
+			aaa: {
+				template: `<div>aaa组件</div>`
+			},
+			bbb: {
+				template: `<div>bbb组件</div>`
+			},
+		},
+		methods: {
+			fn() {
+				this.x = "bbb";
+			}
+		}
+	});
+</script>
+</body>
+</html>
