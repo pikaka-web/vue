@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>watch 和 watchEffect 的使用差异性-2</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script>
+    // watch 侦听器
+    // watchEffect 侦听器，偏向于 effect
+    const app = Vue.createApp({
+        setup() {
+            const {
+                reactive,
+                toRefs,
+                watch,
+                watchEffect
+            } = Vue;
+            const nameObj = reactive({
+                name: '皮卡',
+                englishName: 'pika'
+            });
+            // 具备一定的惰性 lazy
+            // 参数可以拿到原始和当前值
+            // 可以侦听多个数据的变化，用一个侦听器承载
+           watch([() => nameObj.name, () => nameObj.englishName], ([curName, curEng], [prevName, preEng]) => {
+                console.log('watch', curName, prevName, '---', curEng, preEng);
+            }, { immediate: true });
+
+            // 立即执行，没有惰性 immediate
+            // 不需要传递你要侦听的内容，自动会感知代码依赖，不需要传递参数，只要传一个毁掉函数
+            // 不能获取之前的数据的值
+           // const stop = watchEffect(() => {
+           //      //console.log('abc');
+           //      console.log(nameObj.name);
+           //      console.log(nameObj.englishName);
+           //      setTimeout(() => {
+           //          stop();
+           //      },3000)
+           //  })
+
+
+            const {name, englishName} = toRefs(nameObj);
+
+            return {name, englishName}
+        },
+        template: `
+          <div>
+          名字：<input v-model="name">
+          </div>
+          <div>
+          名字：{{ name }}
+          </div>
+          <div>
+          英文名：<input v-model="englishName">
+          </div>
+          <div>
+          英文名：{{ englishName }}
+          </div>
+        `,
+    });
+
+
+    const vm = app.mount('#root');
+</script>
+</html>

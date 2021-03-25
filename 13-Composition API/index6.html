@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用 Composition API 开发TodoList-1</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script>
+    // toRef，
+    const app = Vue.createApp({
+        setup() {
+            const {ref, reactive} = Vue;
+            const inputValue = ref('123');
+            const list = reactive([]);
+            const handleInputValueChange = (e) => {
+                inputValue.value = e.target.value
+                console.log(e.target.value);
+            }
+            const handleSubmit = () => {
+                list.push(inputValue.value)
+            }
+            return  {
+                list,
+                inputValue,
+                handleInputValueChange,
+                handleSubmit
+            }
+        },
+        template: `
+          <div>
+          <input :value="inputValue" @input="handleInputValueChange"/>
+          <button @click="handleSubmit">提交</button>
+          <ul>
+            <li v-for="(item, index) in list" :key="index">{{item}}</li>
+          </ul>
+          </div>
+        `,
+    });
+
+
+    const vm = app.mount('#root');
+</script>
+</html>
