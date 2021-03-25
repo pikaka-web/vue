@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开发实现Vue中的自定义指令-2</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="root"></div>
+</body>
+<script>
+    // 自定义指令 directive
+    const app = Vue.createApp({
+        data() {
+            return {
+                distance: 50
+            }
+        },
+        template: `
+          <div>
+          <div v-pos:right="distance" class="header">
+            <input/>
+          </div>
+          </div>
+        `
+    });
+
+    app.directive('pos', (el, binding) => {
+        console.log(binding, 'binding');
+        el.style[binding.arg] = (binding.value + 'px');
+    })
+
+
+
+
+/*    app.directive('pos', {
+        mounted(el, binding) {
+            el.style.top = (binding.value + 'px')
+        },
+        updated(el, binding) {
+            el.style.top = (binding.value + 'px')
+        }
+    });*/
+
+    const vm = app.mount('#root');
+</script>
+</html>

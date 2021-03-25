@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插件的定义和使用</title>
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body>
+<div id="root"></div>
+<div id="hello"></div>
+</body>
+<script>
+    // plugin 插件,也是吧通用性的功能封装起来
+    const myPlugin = {
+        install(app, options) {
+            app.provide('name', 'pika');
+            app.directive('focus', {
+                mounted(el) {
+                    el.focus();
+                }
+            });
+            app.mixin({
+                mounted() {
+                    console.log('mixin');
+                }
+            });
+            app.config.globalProperties.$sayHello = 'hello hello hello'
+        }
+    }
+
+
+    const app = Vue.createApp({
+        inject: ['name'],
+        template: `
+         <my-title />
+        `
+    });
+
+    app.component('my-title', {
+        inject: ['name'],
+        mounted() {
+            console.log(this.$sayHello);
+        },
+        template: `<div>{{name}} <input v-focus/></div>`
+    })
+
+    app.use(myPlugin, {name: 'pika'})
+
+    const vm = app.mount('#root');
+</script>
+</html>
